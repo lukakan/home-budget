@@ -8,6 +8,6 @@ Application must be made according to DAO pattern and provide following options
 * update transaction
 * delete transaction
 * show all incomes
-* show all expensive <br>
+* show all expenses <br>
   
 Information about transaction must be stored in database.

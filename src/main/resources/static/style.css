@@ -1,0 +1,41 @@
+.header{
+    padding: 5px;
+    margin: auto;
+    letter-spacing: 5px;
+}
+
+.header a{
+    font-size: 45px;
+}
+
+.container{
+    margin-top: 10px;
+}
+
+.menu{
+    color: white;
+    font-size: 35px;
+    letter-spacing: 2px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    background-color: #385f71;
+}
+
+.list-group-item{
+    font-size: 24px !important;
+}
+
+.list-group-item:hover{
+    color: white;
+    background-color: #2B4162;
+}
+
+.summary-row{
+    background-color: #385f71;
+    color: white;
+}
+
+.btn{
+    background-color: #385f71 !important;
+}

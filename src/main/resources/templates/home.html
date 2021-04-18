@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="menu">Menu główne</div>
+    <div class="list-group">
+        <a href="/add" class="list-group-item list-group-item-action"><i class="fas fa-plus"></i> Add new transaction</a>
+        <a href="/list?cateogry=INCOME" class="list-group-item list-group-item-action"><i class="fas fa-coins"></i> Show income transaction </a>
+        <a href="/list?category=EXPENSES" class="list-group-item list-group-item-action"><i class="fas fa-shopping-cart"></i> Show expensive</a>
+        <a href="/editlist" class="list-group-item list-group-item-action"><i class="fas fa-edit"></i> Edit/delete tansaction </a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Transaction</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <from th:method="POST" th:action="@{/addTransaction}">
+        <div class="d-flex justify-content-center mt-5">
+            <div class="col-10 col-md-5 mt-5">
+                <div class="m-3">
+                    <label for="transaction-type" class="form-label">Transaction type</label>
+                    <div id="name-validator" class="validator"></div>
+                    <select id="transaction-type" class="form-control">
+                        <option value="" disabled selected hidden>Choose</option>
+                        <option>Income</option>
+                        <option>Expenses</option>
+                    </select>
+                </div>
+                <div class="m-3">
+                    <label for="transaction-amount" class="form-label">Transaction amount</label>
+                    <div id="mail-validator" class="validator"></div>
+                    <input type="number" id="transaction-amount" class="form-control" step='0.01' value='0.00' placeholder='0.00'>
+                </div>
+                <div class="m-3">
+                    <label for="transaction-date" class="form-label">Transaction date</label>
+                    <input class="form-control" type="date" id="transaction-date">
+                </div>
+                <div class="m-3">
+                    <label for="content" class="form-label">Description</label>
+                    <div id="content-validator" class="validator"></div>
+                    <textarea id="content" class="form-control" rows="8"></textarea>
+                </div>
+                <div class="m-3">
+                    <button type="submit" class="btn btn-dark px-3">Add transaction</button>
+                </div>
+            </div>
+        </div>
+    </from>
+</div>
+</body>
+</html>
