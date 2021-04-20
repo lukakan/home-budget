@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container" layout:fragment="content">
-    <div class="menu">Podgląd dostępnych transakcji</div>
+    <div class="menu" th:text="|${title} TRANSACTIONS|">TYPE TRANSACTIONS</div>
     <table class="table">
         <thead class="thead-dark">
         <tr>
@@ -17,19 +17,23 @@
             <th scope="col">Amount</th>
             <th scope="col">Description</th>
             <th scope="col">Date</th>
+            <th scope="col" th:if="${editmode == true}">edit</th>
+            <th scope="col" th:if="${editmode == true}">delete</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="tranaction:${transactions}">
-            <td th:text="${tranaction.id}">transaction id</td>
-            <td th:text="${tranaction.type}">transaction type</td>
-            <td th:text="${tranaction.amount}">transaction amount</td>
-            <td th:text="${tranaction.description}">transaction description</td>
-            <td th:text="${tranaction.date}">transaction date</td>
+        <tr th:each="transaction:${transactions}">
+            <td th:text="${transaction.id}">transaction id</td>
+            <td th:text="${transaction.type}">transaction type</td>
+            <td th:text="${transaction.amount}">transaction amount</td>
+            <td th:text="${transaction.description}">transaction description</td>
+            <td th:text="${transaction.date}">transaction date</td>
+            <td th:if="${editmode == true}"><a th:href="@{/update?id={id}(id=${transaction.id})}" class="btn btn-success px-3"><i class="fas fa-tools"></i> Update</a></td>
+            <td th:if="${editmode == true}"><a th:href="@{/delete?id={id}(id=${transaction.id})}" class="btn btn-danger px-3"><i class="fas fa-trash"></i> Delete</a></td>
         </tr>
         <tr class="summary-row">
-            <td colspan="2">Saldo</td>
-            <td th:text="${saldo}">1000</td>
+            <td colspan="2">Sum</td>
+            <td th:text="${sum}">1000</td>
         </tr>
         </tbody>
     </table>

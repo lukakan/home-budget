@@ -1,43 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add Transaction</title>
 </head>
 <body>
 <div class="container" layout:fragment="content">
-    <from th:method="POST" th:action="@{/addTransaction}">
+    <div class="alert alert-primary" role="alert" th:if="${feedback == 'success'}">New transaction added!</div>
+    <div class="alert alert-danger" role="alert" th:if="${feedback == 'error'}">Something goes wrong :(</div>
+
+    <form th:method="post" th:action="${action} == 'add' ? @{/add} : @{/update}" th:object="${transaction}">
         <div class="d-flex justify-content-center mt-5">
             <div class="col-10 col-md-5 mt-5">
+                <div class="m-3" th:if="${editmode == true}">
+                    <label for="id" class="form-label">ID</label>
+                    <input type = text th:field="*{id}" id="id" class="form-control" readonly>
+                </div>
                 <div class="m-3">
                     <label for="transaction-type" class="form-label">Transaction type</label>
                     <div id="name-validator" class="validator"></div>
-                    <select id="transaction-type" class="form-control">
+                    <select id="transaction-type" class="form-control" th:field = "*{type}" >
                         <option value="" disabled selected hidden>Choose</option>
-                        <option>Income</option>
-                        <option>Expenses</option>
+                        <option th:value="INCOME">INCOME</option>
+                        <option th:value ="EXPENSE">EXPENSE</option>
                     </select>
                 </div>
                 <div class="m-3">
                     <label for="transaction-amount" class="form-label">Transaction amount</label>
                     <div id="mail-validator" class="validator"></div>
-                    <input type="number" id="transaction-amount" class="form-control" step='0.01' value='0.00' placeholder='0.00'>
+                    <input type="number" id="transaction-amount" class="form-control" step='0.01' value='0.00' placeholder='0.00' th:field="*{amount}">
                 </div>
                 <div class="m-3">
                     <label for="transaction-date" class="form-label">Transaction date</label>
-                    <input class="form-control" type="date" id="transaction-date">
+                    <input class="form-control" type="date" id="transaction-date" th:field="*{date}">
                 </div>
                 <div class="m-3">
                     <label for="content" class="form-label">Description</label>
                     <div id="content-validator" class="validator"></div>
-                    <textarea id="content" class="form-control" rows="8"></textarea>
+                    <textarea id="content" class="form-control" rows="8" th:field="*{description}"></textarea>
                 </div>
-                <div class="m-3">
-                    <button type="submit" class="btn btn-dark px-3">Add transaction</button>
+                <div class="m-3" th:unless="${editmode==true}">
+                    <button type="submit" class="btn btn-dark px-3" id="form-button1">Add transaction</button>
+                </div>
+                <div class="m-3" th:if="${editmode==true}">
+                    <button type="submit" class="btn btn-dark px-3" id="form-button2">Update transaction</button>
                 </div>
             </div>
         </div>
-    </from>
+    </form>
 </div>
 </body>
 </html>

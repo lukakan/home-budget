@@ -36,6 +36,10 @@
     color: white;
 }
 
-.btn{
-    background-color: #385f71 !important;
+#form-button1{
+    background-color: #385f71;
+}
+
+#form-button2{
+    background-color: #385f71;
 }
