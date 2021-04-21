@@ -21,7 +21,7 @@ public class TransactionDao {
     }
 
     public List<Transaction> findAllTransactionFromGivenType(Transaction.Type transactionType) {
-        String sqlQuery = "SELECT * FROM transaction WHERE type = ?";
+        String sqlQuery = "SELECT id, nazwa, producent, opis, cena FROM transaction WHERE type = ?";
         try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
             statement.setString(1, transactionType.toString());
             ResultSet resultSet = statement.executeQuery();
@@ -32,7 +32,7 @@ public class TransactionDao {
     }
 
     public List<Transaction> findAllTransaction() {
-        String sqlQuery = "SELECT * FROM transaction";
+        String sqlQuery = "SELECT id, nazwa, producent, opis, cena FROM transaction";
         try (Statement statement = connection.prepareStatement(sqlQuery)) {
             ResultSet resultSet = statement.executeQuery(sqlQuery);
             return getTransactions(resultSet);
